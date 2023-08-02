@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovieReviewsById } from "../services/api"
+import { fetchMovieReviewsById } from "../../services/api"
 
 import { List } from "./Reviews.styled";
 

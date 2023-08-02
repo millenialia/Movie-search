@@ -1,6 +1,6 @@
 import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovieDetailsById } from "../services/api"
+import { fetchMovieDetailsById } from "../../services/api"
 
 import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back } from "./MovieDetails.styled";
 

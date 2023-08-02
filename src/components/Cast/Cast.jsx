@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovieCreditsById } from "../services/api"
+import { fetchMovieCreditsById } from "../../services/api"
 
 
 import { List } from "./Cast.styled";
