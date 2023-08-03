@@ -7,7 +7,7 @@ const Movies = () => {
 
   const [movies, setMovies] = useState([])
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const searchQuery = searchParams.get("query") ?? ""
   const searchGenre = searchParams.get("genre") ?? ""
