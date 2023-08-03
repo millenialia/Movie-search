@@ -1,48 +1,40 @@
-import { Link, Outlet } from "react-router-dom";
-import { fetchTrendingMovies } from "../../services/api"
+
+import { fetchTrendingMovies, fetchCategories } from "../../services/api"
 import { useEffect, useState } from "react";
-import { Heading, Item } from "./Home.styled";
+import Categories from "components/Categories/Categories";
+import { Heading, Container } from "./Home.styled";
+import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { Movies } from "pages/Movies/Movies";
 
-export const Home = () => {
 
-  const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 7
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
-};
+
+const Home = () => {
 
   const [movies, setMovies] = useState([])
+  const [genres, setGenres] = useState([])
 
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchGenres = async () => {
       try {
-        const data = await fetchTrendingMovies()
-        const movies = data.results
-        setMovies(movies)
+        const { genres } = await fetchCategories()
+        setGenres(genres)
       } catch (error) {
         console.log(error);
       }
     }
 
+    const fetchMovies = async () => {
+      try {
+        const {results} = await fetchTrendingMovies()
+
+        setMovies(results)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchGenres()
     fetchMovies()
   }, []
 
@@ -50,41 +42,13 @@ export const Home = () => {
 
   return (
     <div>
-      <Heading>Trending today</Heading>
-
-
-      <Carousel
-        swipeable={false}
-        draggable={false}
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={5000}
-        keyBoardControl={true}
-        customTransition="all 1s linear"
-        transitionDuration={1000}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        itemClass="carousel-item-padding-40-px">
-
-        {movies.map(({ title, id, poster_path }) => {
-
-          return (
-            <Item key={id}>
-
-              <Link to={`/movies/${id}`} state={{ from: "/" }}>
-                <img src={'' || `https://image.tmdb.org/t/p/w500${poster_path}`} alt="poster" />
-                <p>{title}</p>
-              </Link>
-        </Item>
-
-
-          )
-        } )}
-      </Carousel>
-
-      <Movies/>
-      <Outlet />
+      <Container>
+        <Heading>Trending today</Heading>
+        <HomeSlider movies={movies} />
+        <Categories genres={genres} />
+        </Container>
     </div>
   )
 }
+
+export default Home;

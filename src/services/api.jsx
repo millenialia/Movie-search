@@ -59,3 +59,21 @@ export async function fetchMovieReviewsById(id) {
     console.error(error);
   }
 }
+
+export async function fetchAllMovies(genre) {
+   try{
+    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}`, options);
+    return data
+     } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchCategories() {
+   try{
+    const {data} = await axios.get(`${baseUrl}/genre/movie/list`, options);
+    return data
+     } catch (error) {
+    console.error(error);
+  }
+}

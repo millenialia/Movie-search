@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useSearchParams } from "react-router-dom";
-import { fetchMovieByName } from "../../services/api"
+import { useEffect, useState, Suspense } from "react";
+import { Outlet, useSearchParams, useLocation } from "react-router-dom";
+import { fetchMovieByName, fetchAllMovies } from "../../services/api"
+import MovieList from "components/MovieList/MovieList";
 
-import { Form, List  } from "./Movies.styles";
+const Movies = () => {
 
-export const Movies = () => {
-
-  // const [query, setQuery] = useState('')
   const [movies, setMovies] = useState([])
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchQuery = searchParams.get("query") ?? ""
+  const searchGenre = searchParams.get("genre") ?? ""
+
+  const location = useLocation();
 
   useEffect(() => {
+
+
     const fetchMovies = async () => {
       try {
         const { results } = await fetchMovieByName(searchQuery)
@@ -23,8 +26,21 @@ export const Movies = () => {
       }
     }
 
+    const fetchMoviesByGenre = async () => {
+      try {
+        const {results} = await fetchAllMovies(searchGenre)
+        setMovies(results)
+      } catch (error) {
+        console.log(error);
+      }
+        }
+
+  if (searchQuery !== '') {
     fetchMovies()
-  }, [searchParams, searchQuery])
+  } else if (searchGenre !== '') {
+    fetchMoviesByGenre()
+  }
+  }, [searchParams, searchQuery, searchGenre])
 
 
 
@@ -32,21 +48,16 @@ export const Movies = () => {
   return (
     <div>
 
-      <List>
-        {movies.map(({ title, id, poster_path }) => {
-          return (
-            poster_path &&
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: `/movies?query=${searchQuery}` }}>
-                <img src={'' || `https://image.tmdb.org/t/p/w500${poster_path}`} alt="poster" />
-                <p>{title}</p>
-              </Link>
-            </li>
-          )
-        })}
-      </List>
+      <MovieList
+          movies={movies}
+          searchQuery={searchQuery}
+          location={location} />
 
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+        </Suspense>
     </div>
   )
 }
+
+export default Movies;

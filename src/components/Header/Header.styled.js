@@ -17,11 +17,14 @@ export const Container = styled.div`
 
 export const HeaderBox = styled.header`
 
-  padding: 25px 0;
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px #537FE7;
+  padding: 10px 0;
+
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+
+
   background-color: transperent;
-  margin:16px auto;
+  margin: 10px auto;
+  margin-bottom: 50px;
 
   max-width: 1400px;
 
@@ -69,7 +72,8 @@ export const Form = styled.form`
   border: 2px solid white;
 }
 
->button{
+
+  button{
    width: 150px;
   height: 40px;
   font-size: 20px;

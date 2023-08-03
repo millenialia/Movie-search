@@ -1,10 +1,10 @@
 import { Link, Outlet, useParams, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { fetchMovieDetailsById } from "../../services/api"
 
-import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back } from "./MovieDetails.styled";
+import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container } from "./MovieDetails.styled";
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
 
   const [title, setTitle] = useState('')
   const [year, setYear] = useState('')
@@ -13,7 +13,7 @@ export const MovieDetails = () => {
   const [poster, setPoster] = useState('')
 
   const location = useLocation();
-  const backPath = location.state?.from ?? '/'
+  const backPath =  useRef(location.state?.from ?? '/')
 
 const { movieId } = useParams();
 
@@ -45,8 +45,9 @@ const { movieId } = useParams();
 
 
     <div>
+      <Container>
 
-      <Back to={backPath}>Go back</Back>
+      <Back to={backPath.current}>Go back</Back>
 
       <MovieContainer>
       { poster ? <img src={''||`https://image.tmdb.org/t/p/w500${poster}`} alt="poster" /> : <p>poster</p>}
@@ -77,9 +78,12 @@ const { movieId } = useParams();
         </li>
       </List>
 
-      <Outlet />
+        <Outlet />
+        </Container>
     </div>
 
 
   )
 }
+
+export default MovieDetails;

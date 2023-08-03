@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+`;
 
 
 export const Heading = styled.h1`
@@ -7,24 +12,5 @@ export const Heading = styled.h1`
   text-transform: uppercase;
 `
 
-export const Item = styled.div`
 
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-  >a{
-  width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-decoration: none;
-  color: white;
-  >img{
-    width: 200px;
-    border-radius: 18px;
-  }
-
-`
 
