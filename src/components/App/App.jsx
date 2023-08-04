@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Header } from "../Header/Header";
+import { Loader } from "components/Loader/Loader";
 
 import { Main } from "./App.styled";
 
@@ -18,7 +19,7 @@ export const App = () => {
 
 
         <Main>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader/>}>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/movies" element={<Movies />}/>

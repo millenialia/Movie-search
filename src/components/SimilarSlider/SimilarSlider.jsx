@@ -2,30 +2,32 @@ import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { Item } from "./HomeSlider.styled";
+import { Item, HeadingSecondary } from "./SimilarSlider.styled";
 
-const HomeSlider = ({movies}) => {
+const SimilarSlider = ({movies, location}) => {
 
   const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
-    items: 7
+    items: 8
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5
+    items: 6
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3
+    items: 4
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
+    items: 2
   }
 };
 
   return (
+    <div>
+      <HeadingSecondary>Similar movies</HeadingSecondary>
        <Carousel
         swipeable={false}
         draggable={false}
@@ -45,8 +47,11 @@ const HomeSlider = ({movies}) => {
           return (
             <Item key={id}>
 
-              <Link to={`/movies/${id}`} state={{ from: "/" }}>
-                {poster_path ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="poster" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
+              <Link to={`/movies/${id}`}
+                  state={{ from: location }}
+                >
+                  {poster_path ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="poster" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
+
                 <p>{title}</p>
               </Link>
         </Item>
@@ -54,8 +59,9 @@ const HomeSlider = ({movies}) => {
 
           )
         } )}
-        </Carousel>
+      </Carousel>
+      </div>
   )
 }
 
-export default HomeSlider;
+export default SimilarSlider;

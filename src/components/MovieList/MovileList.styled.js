@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ReactPaginate from "react-paginate";
 
 export const List = styled.ul`
 list-style: none;
@@ -7,6 +8,7 @@ flex-wrap: wrap;
 column-gap: 5px;
 row-gap: 15px;
 justify-content: center;
+
 > li{
   width: 280px;
   display: flex;
@@ -22,6 +24,7 @@ justify-content: center;
   color: white;
   >img{
     width: 250px;
+    height: 372px;
     border-radius: 18px;
   }
   }
@@ -31,3 +34,21 @@ justify-content: center;
 
 `
 
+
+export const StyledReactPaginate = styled(ReactPaginate)`
+list-style: none;
+     display: flex;
+     gap: 15px;
+     flex-wrap: nowrap;
+     align-items: center;
+     justify-content: center;
+     font-size: 26px;
+     color: white;
+     margin: 50px auto;
+     cursor: pointer;
+     >.active{
+
+      background-color: rgba(240, 46, 170);
+      padding: 5px;
+     }
+`;

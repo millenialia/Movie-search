@@ -60,3 +60,20 @@ export const Back = styled(NavLink)`
 color: white;
 text-decorations: none;
 `
+export const SimilarMovies = styled.ul`
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+padding: 0;
+align-items: flex-start;
+>li{
+  width: 100px;
+  height: 100px;
+  >img{
+width: 80px;
+  height: 100px;
+  box-sizing: border-box;
+  }
+}
+`

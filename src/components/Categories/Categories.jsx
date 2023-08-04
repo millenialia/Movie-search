@@ -8,7 +8,6 @@ const Categories = ({ genres }) => {
   const onClick = (e) => {
     const genre = e.target.id
     navigate({pathname: "/movies", search: `?${createSearchParams({genre})}` });
-    console.log(genre);
   }
 
 

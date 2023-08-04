@@ -1,8 +1,10 @@
 import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { fetchMovieDetailsById } from "../../services/api"
+import { fetchMovieDetailsById, fetchSimilarMoviesById } from "../../services/api"
+import SimilarSlider from "../../components/SimilarSlider/SimilarSlider"
+import { Loader } from "components/Loader/Loader";
 
-import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container } from "./MovieDetails.styled";
+import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container, SimilarMovies } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
 
@@ -11,6 +13,8 @@ const MovieDetails = () => {
   const [overview, setOverview] = useState('')
   const [genres, setGenres] = useState([])
   const [poster, setPoster] = useState('')
+  const [similarMovies, setSimilarMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const location = useLocation();
   const backPath =  useRef(location.state?.from ?? '/')
@@ -20,6 +24,7 @@ const { movieId } = useParams();
   useEffect(() => {
 
     const fetchMovie = async () => {
+    setIsLoading(true);
       try {
         const data = await fetchMovieDetailsById(movieId)
         const title = data.title
@@ -35,24 +40,40 @@ const { movieId } = useParams();
         setPoster(poster)
       } catch (error) {
         console.log(error);
+      }finally {
+        setIsLoading(false)
+      }
+    }
+
+    const fetchSimilarMovies = async () => {
+    setIsLoading(true);
+      try {
+        const {results} = await fetchSimilarMoviesById(movieId)
+        setSimilarMovies(results)
+      } catch (error) {
+        console.log(error);
+      }finally {
+        setIsLoading(false)
       }
     }
 
     fetchMovie()
+    fetchSimilarMovies()
   }, [movieId])
 
   return (
 
-
+    isLoading ? <Loader /> :
     <div>
       <Container>
 
       <Back to={backPath.current}>Go back</Back>
 
-      <MovieContainer>
-      { poster ? <img src={''||`https://image.tmdb.org/t/p/w500${poster}`} alt="poster" /> : <p>poster</p>}
+        <MovieContainer>
 
-<div>
+          {poster ? <img src={'' || `https://image.tmdb.org/t/p/w500${poster}`} alt="poster" /> : <p>poster</p>}
+
+          <div>
       <Heading>{title} ({year})</Heading>
 
       <HeadingSecondary>Overview</HeadingSecondary>
@@ -65,7 +86,11 @@ const { movieId } = useParams();
             <li key={id}>{name}</li>
           )
         })}
-          </Genres>
+            </Genres>
+
+            <SimilarSlider movies={similarMovies}
+              location={location} />
+
           </div>
         </MovieContainer>
 

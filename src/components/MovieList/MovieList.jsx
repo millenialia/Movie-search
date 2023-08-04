@@ -1,15 +1,15 @@
-import { List } from "./MovileList.styled";
+import { List, StyledReactPaginate } from "./MovileList.styled";
 import { Link } from "react-router-dom";
+// import ReactPaginate from 'react-paginate';
 
-const MovieList = ({ movies, searchQuery, location }) => {
+const MovieList = ({ movies, location, handlePageChange, totalPages, currentPage }) => {
 
 
   return (
-
+<div>
      <List>
         {movies.map(({ title, id, poster_path }) => {
           return (
-            poster_path &&
             <li key={id}>
                 <Link to={`/movies/${id}`}
                   state={{ from: location }}
@@ -21,7 +21,18 @@ const MovieList = ({ movies, searchQuery, location }) => {
             </li>
           )
         })}
+
       </List>
+      <StyledReactPaginate
+        activeClassName="active"
+        marginPagesDisplayed ={1}
+        pageRangeDisplayed={2}
+        pageCount={totalPages}
+        onPageChange={handlePageChange}
+        forcePage={currentPage-1}
+    />
+
+      </div>
   )
 }
 

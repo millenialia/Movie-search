@@ -7,7 +7,10 @@ export const Header = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const query = e.target.query.value
+    const query = e.target.query.value.trim()
+    if (query === '') {
+      return
+    }
     navigate({pathname: "/movies", search: `?${createSearchParams({query})}` });
     e.target.reset()
   }

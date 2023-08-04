@@ -22,9 +22,9 @@ export async function fetchTrendingMovies() {
   }
 }
 
-export async function fetchMovieByName(name) {
+export async function fetchMovieByName(name, page) {
    try{
-  const {data} = await axios.get(`${baseUrl}/search/movie?query=${name}&${langParams}&include_adult=false`, options);
+  const {data} = await axios.get(`${baseUrl}/search/movie?query=${name}&${langParams}&include_adult=false&page=${page}`, options);
     return data
      } catch (error) {
     console.error(error);
@@ -60,9 +60,9 @@ export async function fetchMovieReviewsById(id) {
   }
 }
 
-export async function fetchAllMovies(genre) {
+export async function fetchAllMovies(genre, page) {
    try{
-    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}`, options);
+    const {data} = await axios.get(`${baseUrl}/discover/movie?with_genres=${genre}&${langParams}&include_adult=false&page=${page}`, options);
     return data
      } catch (error) {
     console.error(error);
@@ -72,6 +72,15 @@ export async function fetchAllMovies(genre) {
 export async function fetchCategories() {
    try{
     const {data} = await axios.get(`${baseUrl}/genre/movie/list`, options);
+    return data
+     } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchSimilarMoviesById(id) {
+   try{
+    const {data} = await axios.get(`${baseUrl}/movie/${id}/similar`, options);
     return data
      } catch (error) {
     console.error(error);
