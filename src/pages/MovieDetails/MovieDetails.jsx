@@ -4,7 +4,7 @@ import { fetchMovieDetailsById, fetchSimilarMoviesById } from "../../services/ap
 import SimilarSlider from "../../components/SimilarSlider/SimilarSlider"
 import { Loader } from "components/Loader/Loader";
 
-import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container, SimilarMovies } from "./MovieDetails.styled";
+import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
 

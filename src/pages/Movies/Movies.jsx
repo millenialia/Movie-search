@@ -11,7 +11,7 @@ const Movies = () => {
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const searchQuery = searchParams.get("query") ?? ""
   const searchGenre = searchParams.get("genre") ?? ""
