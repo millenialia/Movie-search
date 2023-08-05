@@ -11,7 +11,7 @@ export const Header = () => {
     if (query === '') {
       return
     }
-    navigate({pathname: "/movies", search: `?${createSearchParams({query})}` });
+    navigate({pathname: "/movies", search: `?${createSearchParams({query})}&${createSearchParams({page:1})}` });
     e.target.reset()
   }
 
