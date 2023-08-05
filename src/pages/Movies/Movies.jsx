@@ -57,7 +57,7 @@ const Movies = () => {
   } else if (searchGenre !== '') {
     fetchMoviesByGenre()
   }
-  }, [searchParams, searchQuery, searchGenre, page])
+  }, [searchParams, searchQuery, searchGenre, genreName, page])
 
   const handlePageChange = (selectedPage) => {
     const chosenPage = selectedPage.selected + 1
