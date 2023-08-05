@@ -7,7 +7,8 @@ const Categories = ({ genres }) => {
 
   const onClick = (e) => {
     const genre = e.target.id
-    navigate({pathname: "/movies", search: `?${createSearchParams({genre})}` });
+    const name = e.target.name
+    navigate({pathname: "/movies", search: `?${createSearchParams({genre})}&${createSearchParams({name})}&${createSearchParams({page:1})}` });
   }
 
 
@@ -16,7 +17,7 @@ const Categories = ({ genres }) => {
       {genres.map(({ name, id }) => {
         return (
           <li key={id}>
-            <button type='button' onClick={onClick} id={id} >{name}</button>
+            <button type='button' onClick={onClick} id={id} name={name}>{name}</button>
         </li>
         )
       })

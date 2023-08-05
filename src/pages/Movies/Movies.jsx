@@ -3,18 +3,21 @@ import { Outlet, useSearchParams, useLocation } from "react-router-dom";
 import { fetchMovieByName, fetchAllMovies } from "../../services/api"
 import { Loader } from "components/Loader/Loader";
 import MovieList from "components/MovieList/MovieList";
+import { Container, Heading } from "./Movies.styles"
 
 const Movies = () => {
 
   const [movies, setMovies] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
+  const [heading, setHeading] = useState('')
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const searchQuery = searchParams.get("query") ?? ""
   const searchGenre = searchParams.get("genre") ?? ""
+  const genreName = searchParams.get("name") ?? ""
+  const page = searchParams.get("page") ?? ""
 
   const location = useLocation();
 
@@ -24,9 +27,10 @@ const Movies = () => {
     const fetchMovies = async () => {
       setIsLoading(true);
       try {
-        const {results} = await fetchMovieByName(searchQuery, currentPage)
-        setMovies(results)
-        setTotalPages(500)
+        const data = await fetchMovieByName(searchQuery, page)
+        setMovies(data.results)
+        setTotalPages(data.total_pages<300 ? data.total_pages : 300)
+        setHeading(searchQuery)
       } catch (error) {
         console.log(error);
       } finally {
@@ -37,9 +41,10 @@ const Movies = () => {
     const fetchMoviesByGenre = async () => {
       setIsLoading(true);
       try {
-        const {results} = await fetchAllMovies(searchGenre, currentPage)
-        setMovies(results)
+        const data = await fetchAllMovies(searchGenre, page)
+        setMovies(data.results)
         setTotalPages(500)
+        setHeading(genreName)
       } catch (error) {
         console.log(error);
       }finally {
@@ -52,31 +57,46 @@ const Movies = () => {
   } else if (searchGenre !== '') {
     fetchMoviesByGenre()
   }
-  }, [searchParams, searchQuery, searchGenre, currentPage])
+  }, [searchParams, searchQuery, searchGenre, page])
 
   const handlePageChange = (selectedPage) => {
     const chosenPage = selectedPage.selected + 1
-    setCurrentPage(chosenPage)
+
+    const newSearchParams = {
+  page: chosenPage,
+};
+
+setSearchParams((prevParams) => {
+  return new URLSearchParams({
+    ...Object.fromEntries(prevParams.entries()),
+    ...newSearchParams,
+  });
+});
   };
 
 
   return (
     isLoading ? <Loader /> :
-    <div>
+    <Container>
+      <div>
+          {movies.length === 0 ? <Heading> No movies found </Heading> :
 
-      <MovieList
-        movies={movies}
-        searchQuery={searchQuery}
-        location={location}
-        handlePageChange={handlePageChange}
-        totalPages={totalPages}
-        currentPage={currentPage}
-      />
+            <MovieList
+          heading={ heading }
+          movies={movies}
+          searchQuery={searchQuery}
+          location={location}
+          handlePageChange={handlePageChange}
+          totalPages={totalPages}
+          currentPage={page}
+        />}
+
 
       <Suspense fallback={<Loader/>}>
         <Outlet />
         </Suspense>
-    </div>
+      </div>
+      </Container>
   )
 }
 

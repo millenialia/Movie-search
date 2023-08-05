@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import ReactPaginate from "react-paginate";
 
+
+export const Heading = styled.h1`
+  font-weight: 300;
+  text-transform: uppercase;
+`
+
 export const List = styled.ul`
 list-style: none;
 display: flex;

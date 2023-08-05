@@ -19,6 +19,7 @@ gap: 30px;
 
 >img{
   width: 300px;
+  height: 450px;
 }
 
 >div{

@@ -1,12 +1,12 @@
-import { List, StyledReactPaginate } from "./MovileList.styled";
 import { Link } from "react-router-dom";
-// import ReactPaginate from 'react-paginate';
+import { Heading, List, StyledReactPaginate } from "./MovileList.styled";
 
-const MovieList = ({ movies, location, handlePageChange, totalPages, currentPage }) => {
+const MovieList = ({ movies, heading,  location, handlePageChange, totalPages, currentPage }) => {
 
 
   return (
-<div>
+    <div>
+      <Heading> {heading}</Heading>
      <List>
         {movies.map(({ title, id, poster_path }) => {
           return (
