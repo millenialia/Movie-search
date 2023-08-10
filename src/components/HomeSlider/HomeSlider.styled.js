@@ -17,7 +17,7 @@ export const Item = styled.div`
   >img{
     width: 200px;
     height: 300px;
-    border-radius: 5px;
+    // border-radius: 5px;
   }
 
 `

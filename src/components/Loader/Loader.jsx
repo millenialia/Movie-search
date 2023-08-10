@@ -1,20 +1,20 @@
 import {Ring} from "./Loader.styled"
-import { ColorRing } from 'react-loader-spinner'
+import { Hearts } from 'react-loader-spinner'
 
 
 export const Loader = () => {
   return (
-<Ring>
-    <ColorRing
-
-  visible={true}
+    <Ring>
+<Hearts
   height="80"
-      width="80"
-      wrapperClass = "loader"
-  ariaLabel="blocks-loading"
-  colors={['#F02EAA', '#F02EAA', '#F02EAA', '#F02EAA', '#F02EAA' ]
-  }
-      />
+  width="80"
+  color="rgba(240, 46, 170)"
+  ariaLabel="hearts-loading"
+  wrapperStyle={{}}
+  wrapperClass="loader"
+  visible={true}
+/>
+
       </Ring>
 
   )

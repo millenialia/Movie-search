@@ -4,7 +4,7 @@ import { fetchMovieDetailsById, fetchSimilarMoviesById } from "../../services/ap
 import SimilarSlider from "../../components/SimilarSlider/SimilarSlider"
 import { Loader } from "components/Loader/Loader";
 
-import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container } from "./MovieDetails.styled";
+import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container, Hero, Details, Year, Likes } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
 
@@ -13,6 +13,7 @@ const MovieDetails = () => {
   const [overview, setOverview] = useState('')
   const [genres, setGenres] = useState([])
   const [poster, setPoster] = useState('')
+  const [backdrop, setBackdrop] = useState('')
   const [similarMovies, setSimilarMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -32,11 +33,13 @@ const { movieId } = useParams();
         const overview = data.overview
         const genres = data.genres
         const poster = data.poster_path
+        const backdrop = data.backdrop_path
 
         setTitle(title)
         setYear(year)
         setOverview(overview)
         setGenres(genres)
+        setBackdrop(backdrop)
         setPoster(poster)
       } catch (error) {
         console.log(error);
@@ -67,14 +70,26 @@ const { movieId } = useParams();
     <div>
       <Container>
 
-      <Back to={backPath.current}>Go back</Back>
+          <Back to={backPath.current}>&larr;</Back>
+
+          <Hero $backgroundUrl = {`https://image.tmdb.org/t/p/w500${backdrop}`}>
+
+       <Details>
+
+              <Heading>{title}</Heading>
+
+              <Year>{year}</Year>
+         <Likes>109 likes</Likes>
+
+            </Details>
+            </Hero>
+
 
         <MovieContainer>
 
           {poster ? <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="poster" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="poster" />}
 
           <div>
-      <Heading>{title} ({year})</Heading>
 
       <HeadingSecondary>Overview</HeadingSecondary>
       <p>{overview}</p>

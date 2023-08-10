@@ -1,5 +1,6 @@
 import { useNavigate, createSearchParams } from "react-router-dom";
-import { List } from "./Categories.styled"
+import { List, Button } from "./Categories.styled"
+import { Container } from "pages/Home/Home.styled";
 
 const Categories = ({ genres }) => {
 
@@ -13,17 +14,19 @@ const Categories = ({ genres }) => {
 
 
   return (
+    <Container>
     <List>
       {genres.map(({ name, id }) => {
         return (
           <li key={id}>
-            <button type='button' onClick={onClick} id={id} name={name}>{name}</button>
+            <Button onClick={onClick} id={id} name={name}>{name}</Button>
         </li>
         )
       })
       }
 
-    </List>
+      </List>
+    </Container>
   )
 }
 

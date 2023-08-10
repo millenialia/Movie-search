@@ -64,12 +64,12 @@ export const Form = styled.form`
   font-size: 20px;
   color: white;
   background-color: transparent;
-  outline: transparent;
+  outline: none;
 
 }
 
 >input:focus{
-  border: 2px solid white;
+  border-bottom: 1px solid white;
 }
 
 
@@ -81,6 +81,9 @@ export const Form = styled.form`
   background-color: transparent;
 border: none;
 cursor: pointer;
+&:hover{
+color: #537FE7;
+}
 }
 `
 
