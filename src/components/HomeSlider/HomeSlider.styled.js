@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Item = styled.div`
 
   width: 220px;
@@ -9,15 +10,23 @@ export const Item = styled.div`
 
   >a{
   width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   text-decoration: none;
   color: white;
+  text-transform: uppercase;
+
   >img{
     width: 200px;
     height: 300px;
-    // border-radius: 5px;
+    transition: transform .3s linear;
+    &:hover{
+      transform: scale(1.03);
+    }
+    +p{
+      overflow: auto;
+      white-space: nowrap;
+      &::-webkit-scrollbar {
+        display: none; }
+    }
   }
 
 `

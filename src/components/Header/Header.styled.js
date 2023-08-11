@@ -81,6 +81,8 @@ export const Form = styled.form`
   background-color: transparent;
 border: none;
 cursor: pointer;
+transition: all .3s linear;
+
 &:hover{
 color: #537FE7;
 }

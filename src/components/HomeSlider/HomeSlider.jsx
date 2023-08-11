@@ -47,7 +47,7 @@ const HomeSlider = ({movies}) => {
 
               <Link to={`/movies/${id}`} state={{ from: "/" }}>
                 {poster_path ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="poster" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
-                <p>{title}</p>
+                  <p className="title">{title}</p>
               </Link>
         </Item>
 

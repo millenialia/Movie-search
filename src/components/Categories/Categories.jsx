@@ -19,7 +19,7 @@ const Categories = ({ genres }) => {
       {genres.map(({ name, id }) => {
         return (
           <li key={id}>
-            <Button onClick={onClick} id={id} name={name}>{name}</Button>
+            <Button onClick={onClick} id={id} name={name} $animated>{name}</Button>
         </li>
         )
       })

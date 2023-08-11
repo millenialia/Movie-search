@@ -31,7 +31,6 @@ justify-content: center;
   >img{
     width: 250px;
     height: 372px;
-    // border-radius: 4px;
   }
   }
 

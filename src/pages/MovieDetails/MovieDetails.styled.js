@@ -27,7 +27,6 @@ gap: 30px;
   margin-top: -150px;
   margin-left: 20px;
   z-index: 1000000000;
-      // border-radius: 4px;
 }
 
 >div{
@@ -69,6 +68,10 @@ export const Back = styled(NavLink)`
 color: white;
 font-size: 35px;
 text-decoration: none;
+transition: all .3s linear;
+&:hover{
+  color: #537FE7;
+}
 `
 
 export const Hero = styled.div`
