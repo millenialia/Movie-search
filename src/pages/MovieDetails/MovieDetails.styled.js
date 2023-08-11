@@ -30,14 +30,23 @@ gap: 30px;
 }
 
 >div{
-  width: 600px;
+
   >p{
     font-size: 14px;
+    width: 600px;
+    margin-bottom: 40px;
+    min-height: 80px;
   }
 }
 `
 export const HeadingSecondary = styled.h2`
 font-weight: 300;
+font-size: 26px;
+width: 200px;
+margin: 0;
+margin-bottom: 40px;
+text-transform: uppercase;
+box-shadow: rgba(240, 46, 170, 0.3) 0px 5px, rgba(240, 46, 170, 0.2) 0px 10px;
 `
 export const Genres = styled.ul`
 list-style: none;
@@ -54,14 +63,7 @@ export const List = styled.ul`
 display: flex;
 font-size: 20px;
 gap: 10px;
-
-
->li{
-  >a{
-    text-decoration: none;
-    color: #537FE7;
-  }
-}
+padding: 0 25px;
 `
 
 export const Back = styled(NavLink)`
@@ -107,16 +109,31 @@ margin: 30px 0 0 50px;
 
 `
 export const Year = styled.h2`
-color: #C7C1BA;
-    font-size: 23px;
-    font-weight: 300;
-    margin-bottom: 15px;
+  color: #C7C1BA;
+  font-size: 23px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  margin-left: 15px;
 `
 export const Likes = styled.span`
-&:before{
-  content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/icon_like.png");
-    position: relative;
-    top: 2px;
-    padding-right: 7px;
+margin-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+>svg{
+  fill: yellow;
 }
+`
+export const SimilarMoviesContainer = styled.div`
+padding: 0 25px;
+margin-top: 40px;
+`
+export const Link = styled(NavLink)`
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  &.active {
+    box-shadow: rgba(240, 46, 170, 0.5) 0px 5px;
+  }
 `

@@ -9,11 +9,11 @@ const SimilarSlider = ({movies, location}) => {
   const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
-    items: 8
+    items: 14
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 6
+    items: 10
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },

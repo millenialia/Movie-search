@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchMovieCreditsById } from "../../services/api"
 import { Loader } from "components/Loader/Loader";
 
-import { List } from "./Cast.styled";
+import { List, Profile } from "./Cast.styled";
 
 const Cast = () => {
 
@@ -37,9 +37,13 @@ const Cast = () => {
           return (
 
             <li key={id}>
-              {profile_path ? <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt="profile" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
-              <p>{name}</p>
-              <p>Character: {character}</p>
+
+                {profile_path ? <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt="profile" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
+
+              <Profile>
+                <p>{name}</p>
+                <p>{character}</p>
+              </Profile>
             </li>
           )
         })

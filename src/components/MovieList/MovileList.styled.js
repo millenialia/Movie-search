@@ -53,7 +53,7 @@ list-style: none;
      cursor: pointer;
      >.active{
 
-      background-color: rgba(240, 46, 170);
+      box-shadow: rgba(240, 46, 170, 0.5) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px;
       padding: 5px;
      }
 `;

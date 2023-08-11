@@ -1,10 +1,10 @@
-import { Link, Outlet, useParams, useLocation } from "react-router-dom";
+import { Outlet, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { fetchMovieDetailsById, fetchSimilarMoviesById } from "../../services/api"
 import SimilarSlider from "../../components/SimilarSlider/SimilarSlider"
 import { Loader } from "components/Loader/Loader";
 
-import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container, Hero, Details, Year, Likes } from "./MovieDetails.styled";
+import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Container, Hero, Details, Year, Likes, SimilarMoviesContainer, Link } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
 
@@ -14,6 +14,7 @@ const MovieDetails = () => {
   const [genres, setGenres] = useState([])
   const [poster, setPoster] = useState('')
   const [backdrop, setBackdrop] = useState('')
+  const [rating, setRating] = useState(0)
   const [similarMovies, setSimilarMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -34,6 +35,9 @@ const { movieId } = useParams();
         const genres = data.genres
         const poster = data.poster_path
         const backdrop = data.backdrop_path
+        const rating = data.vote_average.toFixed(1);
+
+        console.log(data);
 
         setTitle(title)
         setYear(year)
@@ -41,6 +45,7 @@ const { movieId } = useParams();
         setGenres(genres)
         setBackdrop(backdrop)
         setPoster(poster)
+        setRating(rating)
       } catch (error) {
         console.log(error);
       }finally {
@@ -79,18 +84,17 @@ const { movieId } = useParams();
               <Heading>{title}</Heading>
 
               <Year>{year}</Year>
-         <Likes>109 likes</Likes>
+              <Likes><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path></svg>{rating}</Likes>
 
             </Details>
             </Hero>
 
 
-        <MovieContainer>
 
+        <MovieContainer>
           {poster ? <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="poster" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="poster" />}
 
           <div>
-
       <HeadingSecondary>Overview</HeadingSecondary>
       <p>{overview}</p>
 
@@ -103,11 +107,13 @@ const { movieId } = useParams();
         })}
             </Genres>
 
-            <SimilarSlider movies={similarMovies}
-              location={location} />
 
-          </div>
-        </MovieContainer>
+            </div>
+          </MovieContainer>
+
+          <SimilarMoviesContainer>
+      <SimilarSlider movies={similarMovies} location={location} />
+</SimilarMoviesContainer>
 
       <List>
         <li>
@@ -127,3 +133,5 @@ const { movieId } = useParams();
 }
 
 export default MovieDetails;
+
+

@@ -15,6 +15,7 @@ export const Item = styled.div`
   text-decoration: none;
   color: white;
   font-size: 8px;
+  text-transform: uppercase;
   >img{
     width: 80px;
     height: 112px;
@@ -24,4 +25,10 @@ export const Item = styled.div`
 `
 export const HeadingSecondary = styled.h2`
 font-weight: 300;
+font-size: 26px;
+width: 200px;
+margin: 0;
+margin-bottom: 40px;
+text-transform: uppercase;
+box-shadow: rgba(240, 46, 170, 0.3) 0px 5px, rgba(240, 46, 170, 0.2) 0px 10px;
 `
