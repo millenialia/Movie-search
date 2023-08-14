@@ -1,6 +1,5 @@
 import { useNavigate, createSearchParams } from "react-router-dom";
 import { List, Button } from "./Categories.styled"
-import { Container } from "pages/Home/Home.styled";
 
 const Categories = ({ genres }) => {
 
