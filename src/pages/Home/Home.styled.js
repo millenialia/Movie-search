@@ -6,11 +6,11 @@ export const Container = styled.div`
   padding: 0 16px;
 `;
 
+export const HomeBox = styled.div`
+  display: flex;
 
-export const Heading = styled.h1`
-  font-weight: 300;
-  text-transform: uppercase;
 `
+
 
 
 

@@ -17,7 +17,7 @@ useEffect(() => {
   setIsLoading(true);
   try {
     const { results } = await fetchMovieReviewsById(movieId)
-    console.log(results);
+    // console.log(results);
     setReviews(results)
       } catch (error) {
         console.log(error);
@@ -37,7 +37,7 @@ useEffect(() => {
           reviews.map(({ author, content, id, author_details }) => {
         return (
           <li key={id}>
-            
+
             <span>
               {author_details.avatar_path ? <img src={`https://image.tmdb.org/t/p/w500${author_details.avatar_path}`} alt="profile" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
             <p>

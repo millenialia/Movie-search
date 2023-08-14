@@ -72,7 +72,7 @@ font-size: 35px;
 text-decoration: none;
 transition: all .3s linear;
 &:hover{
-  color: #537FE7;
+  color: rgba(83,127,231);
 }
 `
 

@@ -86,3 +86,12 @@ export async function fetchSimilarMoviesById(id) {
     console.error(error);
   }
 }
+
+export async function fetchTopRated(page) {
+   try{
+    const {data} = await axios.get(`${baseUrl}/movie/top_rated?language=en-US&page=${page}`, options);
+    return data
+     } catch (error) {
+    console.error(error);
+  }
+}

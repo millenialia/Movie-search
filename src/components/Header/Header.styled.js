@@ -48,7 +48,7 @@ export const Link = styled(NavLink)`
   color: white;
 
   &.active {
-    color: #537FE7;
+    color: rgba(83,127,231);
   }
 `
 
@@ -84,7 +84,7 @@ cursor: pointer;
 transition: all .3s linear;
 
 &:hover{
-color: #537FE7;
+color: rgba(83,127,231);
 }
 }
 `

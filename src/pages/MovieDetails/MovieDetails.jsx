@@ -37,7 +37,7 @@ const { movieId } = useParams();
         const backdrop = data.backdrop_path
         const rating = data.vote_average.toFixed(1);
 
-        console.log(data);
+        // console.log(data);
 
         setTitle(title)
         setYear(year)

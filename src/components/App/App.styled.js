@@ -5,7 +5,7 @@ export const Header = styled.header`
   position: relative;
   padding: 25px 0;
   border-radius: 50px;
-  box-shadow: 0px 0px 10px #537FE7;
+  box-shadow: 0px 0px 10px rgba(83,127,231);
   background-color: transperent;
   margin:16px auto;
 
@@ -36,7 +36,7 @@ export const Link = styled(NavLink)`
   color: white;
 
   &.active {
-    color: #537FE7;
+    color: rgba(83,127,231);
   }
 `;
 

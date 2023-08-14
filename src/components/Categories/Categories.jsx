@@ -14,7 +14,6 @@ const Categories = ({ genres }) => {
 
 
   return (
-    <Container>
     <List>
       {genres.map(({ name, id }) => {
         return (
@@ -26,7 +25,6 @@ const Categories = ({ genres }) => {
       }
 
       </List>
-    </Container>
   )
 }
 

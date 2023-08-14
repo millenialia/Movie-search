@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { Item } from "./HomeSlider.styled";
+import { Heading, Item } from "./HomeSlider.styled";
 
 const HomeSlider = ({movies}) => {
 
@@ -13,7 +13,7 @@ const HomeSlider = ({movies}) => {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5
+    items: 6
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -26,9 +26,11 @@ const HomeSlider = ({movies}) => {
 };
 
   return (
+    <div>
+    <Heading>Trending today</Heading>
        <Carousel
-        swipeable={false}
-        draggable={false}
+        swipeable={true}
+        draggable={true}
         responsive={responsive}
         infinite={true}
         autoPlay={true}
@@ -54,7 +56,8 @@ const HomeSlider = ({movies}) => {
 
           )
         } )}
-        </Carousel>
+      </Carousel>
+      </div>
   )
 }
 

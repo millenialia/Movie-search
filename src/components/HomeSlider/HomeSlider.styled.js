@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Heading = styled.h1`
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 26px;
+`
+
 
 export const Item = styled.div`
 
@@ -9,14 +15,14 @@ export const Item = styled.div`
   gap: 5px;
 
   >a{
-  width: 200px;
+  width: 170px;
   text-decoration: none;
   color: white;
   text-transform: uppercase;
 
   >img{
-    width: 200px;
-    height: 300px;
+    width: 170px;
+    height: 255px;
     transition: transform .3s linear;
     &:hover{
       transform: scale(1.03);
