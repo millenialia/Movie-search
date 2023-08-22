@@ -1,16 +1,17 @@
 import { useEffect, useState, Suspense } from "react";
 import { Outlet, useSearchParams, useLocation } from "react-router-dom";
-import { fetchMovieByName, fetchAllMovies } from "../../services/api"
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovieByName, fetchMoviesByGenre } from "redux/operations";
+import { selectMovies, selectMoviesPages, selectMoviesIsLoading } from "redux/selectors";
+
 import { Loader } from "components/Loader/Loader";
 import MovieList from "components/MovieList/MovieList";
 import { Container, Heading } from "./Movies.styles"
 
 const Movies = () => {
 
-  const [movies, setMovies] = useState([])
   const [heading, setHeading] = useState('')
-  const [totalPages, setTotalPages] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,43 +22,30 @@ const Movies = () => {
 
   const location = useLocation();
 
+  const isLoading = useSelector(selectMoviesIsLoading)
+  const movies = useSelector(selectMovies)
+  const totalPages = useSelector(selectMoviesPages)
+  const dispatch = useDispatch()
+
   useEffect(() => {
 
-
-    const fetchMovies = async () => {
-      setIsLoading(true);
-      try {
-        const data = await fetchMovieByName(searchQuery, page)
-        setMovies(data.results)
-        setTotalPages(data.total_pages<300 ? data.total_pages : 300)
-        setHeading(searchQuery)
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false)
-      }
+    if (searchQuery !== '') {
+    const search = {
+      name: searchQuery,
+      page
     }
-
-    const fetchMoviesByGenre = async () => {
-      setIsLoading(true);
-      try {
-        const data = await fetchAllMovies(searchGenre, page)
-        setMovies(data.results)
-        setTotalPages(500)
-        setHeading(genreName)
-      } catch (error) {
-        console.log(error);
-      }finally {
-        setIsLoading(false)
-      }
-        }
-
-  if (searchQuery !== '') {
-    fetchMovies()
+    dispatch(fetchMovieByName(search))
+    setHeading(searchQuery)
   } else if (searchGenre !== '') {
-    fetchMoviesByGenre()
+    const search = {
+      genre: searchGenre,
+      page
+    }
+    dispatch(fetchMoviesByGenre(search))
+    setHeading(genreName)
   }
-  }, [searchParams, searchQuery, searchGenre, genreName, page])
+
+  },[dispatch, searchQuery, searchGenre, genreName, page])
 
   const handlePageChange = (selectedPage) => {
     const chosenPage = selectedPage.selected + 1

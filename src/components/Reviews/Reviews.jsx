@@ -1,33 +1,26 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovieReviewsById } from "../../services/api"
 import { Loader } from "components/Loader/Loader";
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovieReviewsById } from "redux/operations";
+import { selectReviews, selectReviewsIsLoading } from "redux/selectors";
 
 import { List } from "./Reviews.styled";
 
 const Reviews = () => {
 
-  const [reviews, setReviews] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-
   const { movieId } = useParams();
 
-useEffect(() => {
-  const fetchReviews = async () => {
-  setIsLoading(true);
-  try {
-    const { results } = await fetchMovieReviewsById(movieId)
-    // console.log(results);
-    setReviews(results)
-      } catch (error) {
-        console.log(error);
-      }finally {
-        setIsLoading(false)
-      }
-    }
+  const reviews = useSelector(selectReviews)
+  const isLoading = useSelector(selectReviewsIsLoading)
 
-    fetchReviews()
-  }, [movieId])
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchMovieReviewsById(movieId))
+  },[dispatch, movieId])
+
 
   return (
 

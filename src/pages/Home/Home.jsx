@@ -1,62 +1,30 @@
-
-import { fetchTrendingMovies, fetchCategories, fetchTopRated } from "../../services/api"
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTrendingMovies, fetchCategories, fetchTopRated } from "redux/operations";
+import { selectTrendingMovies, selectCategories, selectTopRated, selectTopRatedTotalPages } from "redux/selectors";
+
 import Categories from "components/Categories/Categories";
 import { Container, HomeBox } from "./Home.styled";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
+
 import TopRated from "components/TopRated/TopRated";
-
-
-
 
 const Home = () => {
 
-  const [movies, setMovies] = useState([])
-  const [genres, setGenres] = useState([])
-  const [topRated, setTopRated] = useState([])
-  const [totalPageTopRated, setTotalPagesTopRated] = useState(1)
   const [currentPageTopRated, setCurrentPageTopRated] = useState(1)
+
+  const movies = useSelector(selectTrendingMovies)
+  const genres = useSelector(selectCategories)
+  const topRated = useSelector(selectTopRated)
+  const totalPageTopRated = useSelector(selectTopRatedTotalPages)
+  const dispatch = useDispatch()
 
 
   useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const { genres } = await fetchCategories()
-        setGenres(genres)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    const fetchMovies = async () => {
-      try {
-        const {results} = await fetchTrendingMovies()
-
-        setMovies(results)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    const fetchTopRatedMovies = async () => {
-      try {
-        const data = await fetchTopRated(currentPageTopRated)
-        const results = data.results;
-        const pages = data.total_pages
-        setTotalPagesTopRated(pages)
-        // console.log(results);
-
-        setTopRated(results)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchGenres()
-    fetchMovies()
-    fetchTopRatedMovies()
-  }, [currentPageTopRated]
-  )
+    dispatch(fetchTrendingMovies())
+    dispatch(fetchCategories())
+    dispatch(fetchTopRated(currentPageTopRated))
+  }, [dispatch, currentPageTopRated])
 
   const handlePageChange = (selectedPage) => {
     const chosenPage = selectedPage.selected + 1
