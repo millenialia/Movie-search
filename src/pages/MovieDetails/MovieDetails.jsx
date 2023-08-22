@@ -1,5 +1,5 @@
 import { Outlet, useParams, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovieDetailsById, fetchSimilarMovies } from "redux/operations";
