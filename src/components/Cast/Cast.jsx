@@ -1,27 +1,33 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { fetchMovieCreditsById } from "../../services/api"
 import { Loader } from "components/Loader/Loader";
-
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovieCreditsById } from "redux/operations";
-import { selectCast, selectCastIsLoading } from "redux/selectors";
 
 import { List, Profile } from "./Cast.styled";
 
 const Cast = () => {
 
-  // const [isLoading, setIsLoading] = useState(false)
+  const [cast, setCast] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const { movieId } = useParams();
 
-  const cast = useSelector(selectCast)
-  const isLoading = useSelector(selectCastIsLoading)
-
-  const dispatch = useDispatch()
-
   useEffect(() => {
-    dispatch(fetchMovieCreditsById(movieId))
-  },[dispatch, movieId])
+    const fetchCast = async () => {
+    setIsLoading(true);
+  try {
+    const { cast } = await fetchMovieCreditsById(movieId)
+
+    setCast(cast)
+      } catch (error) {
+        console.log(error);
+      }finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchCast()
+  }, [movieId])
 
   return (
     isLoading ? <Loader /> :

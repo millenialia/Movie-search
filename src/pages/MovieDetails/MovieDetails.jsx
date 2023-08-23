@@ -1,10 +1,6 @@
 import { Outlet, useParams, useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
-
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovieDetailsById, fetchSimilarMovies } from "redux/operations";
-import { selectMovieDetails, selectDetailsIsLoading } from "redux/selectors";
-
+import { useEffect, useState, useRef } from "react";
+import { fetchMovieDetailsById, fetchSimilarMoviesById } from "../../services/api"
 import SimilarSlider from "../../components/SimilarSlider/SimilarSlider"
 import { Loader } from "components/Loader/Loader";
 
@@ -12,31 +8,66 @@ import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back, Containe
 
 const MovieDetails = () => {
 
-  // const [isLoading, setIsLoading] = useState(false)
+  const [title, setTitle] = useState('')
+  const [year, setYear] = useState('')
+  const [overview, setOverview] = useState('')
+  const [genres, setGenres] = useState([])
+  const [poster, setPoster] = useState('')
+  const [backdrop, setBackdrop] = useState('')
+  const [rating, setRating] = useState(0)
+  const [similarMovies, setSimilarMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const location = useLocation();
-  const backPath = useRef(location.state?.from ?? '/')
+  const backPath =  useRef(location.state?.from ?? '/')
 
-  const { movieId } = useParams();
-
-  const isLoading = useSelector(selectDetailsIsLoading)
-  const details = useSelector(selectMovieDetails)
-  const title = details.title
-  const year = details.year
-  const overview = details.overview
-  const genres = details.genres
-  const poster = details.poster
-  const backdrop = details.backdrop
-  const rating = details.rating
-  const similarMovies = details.similarMovies
-
-  const dispatch = useDispatch()
+const { movieId } = useParams();
 
   useEffect(() => {
-    dispatch(fetchMovieDetailsById(movieId))
-    dispatch(fetchSimilarMovies(movieId))
-  },[dispatch, movieId])
 
+    const fetchMovie = async () => {
+    setIsLoading(true);
+      try {
+        const data = await fetchMovieDetailsById(movieId)
+        const title = data.title
+        const year = data.release_date.split('-')[0]
+        const overview = data.overview
+        const genres = data.genres
+        const poster = data.poster_path
+        const backdrop = data.backdrop_path
+        const rating = data.vote_average.toFixed(1);
+
+        // console.log(data);
+
+        setTitle(title)
+        setYear(year)
+        setOverview(overview)
+        setGenres(genres)
+        setBackdrop(backdrop)
+        setPoster(poster)
+        setRating(rating)
+      } catch (error) {
+        console.log(error);
+      }finally {
+        setIsLoading(false)
+      }
+    }
+
+    const fetchSimilarMovies = async () => {
+    setIsLoading(true);
+      try {
+        const {results} = await fetchSimilarMoviesById(movieId)
+        setSimilarMovies(results)
+      } catch (error) {
+        console.log(error);
+      }finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchMovie()
+    fetchSimilarMovies()
+  }, [movieId])
 
   return (
 
@@ -80,9 +111,9 @@ const MovieDetails = () => {
             </div>
           </MovieContainer>
 
-        <SimilarMoviesContainer>
-          <SimilarSlider movies={similarMovies} location={location} />
-        </SimilarMoviesContainer>
+          <SimilarMoviesContainer>
+      <SimilarSlider movies={similarMovies} location={location} />
+</SimilarMoviesContainer>
 
       <List>
         <li>
