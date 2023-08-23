@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Heading = styled.h1`
   font-weight: 300;
   text-transform: uppercase;
   font-size: 26px;
-`
-
+`;
 
 export const Item = styled.div`
 
@@ -35,4 +34,4 @@ export const Item = styled.div`
     }
   }
 
-`
+`;

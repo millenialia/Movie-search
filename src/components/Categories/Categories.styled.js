@@ -1,35 +1,27 @@
-import styled from "styled-components";
-
-
-
+import styled from 'styled-components';
 
 export const List = styled.ul`
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 25px;
+  justify-content: center;
+  margin-bottom: 20px;
+  > li {
+    width: 120px;
 
-padding: 0;
-list-style: none;
-display: flex;
-flex-wrap: wrap;
-column-gap: 20px;
-row-gap: 25px;
-justify-content: center;
-margin-bottom: 20px;
-> li{
-  width: 120px;
-
-  >a{
-  width: 100px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-decoration: none;
-  color: white;
-
+    > a {
+      width: 100px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-decoration: none;
+      color: white;
+    }
   }
-
-
-}
-
-`
+`;
 
 export const Button = styled.a`
   cursor: pointer;
@@ -54,5 +46,4 @@ export const Button = styled.a`
     }
   }
 
-`
-
+`;

@@ -1,9 +1,7 @@
-
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Ring = styled.div`
->.loader{
-  
-      justify-content: center;
-}
-`
+  > .loader {
+    justify-content: center;
+  }
+`;

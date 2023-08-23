@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   max-width: 1200px;
@@ -9,4 +9,4 @@ export const Container = styled.div`
 export const Heading = styled.h1`
   font-weight: 300;
   text-transform: uppercase;
-`
+`;
