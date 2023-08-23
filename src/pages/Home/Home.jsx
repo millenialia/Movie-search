@@ -44,8 +44,7 @@ const Home = () => {
         const results = data.results;
         const pages = data.total_pages
         setTotalPagesTopRated(pages)
-        // console.log(results);
-
+        
         setTopRated(results)
       } catch (error) {
         console.log(error);
