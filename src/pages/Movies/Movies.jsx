@@ -3,7 +3,7 @@ import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { fetchMovieByName, fetchAllMovies } from '../../services/api';
 import { Loader } from 'components/Loader/Loader';
 import MovieList from 'components/MovieList/MovieList';
-import { Container, Heading } from './Movies.styles';
+import { Container, Heading } from './Movies.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);

@@ -6,6 +6,10 @@ import {
 } from '../../services/api';
 import SimilarSlider from '../../components/SimilarSlider/SimilarSlider';
 import { Loader } from 'components/Loader/Loader';
+import { useDispatch, useSelector } from "react-redux";
+import { addMovie, deleteMovie } from 'redux/watchListSlice';
+import { addRecentlyViewed } from 'redux/recentlyViewedSlice';
+import { selectRecentlyViewed, selectWatchList } from 'redux/selectors';
 
 import {
   Heading,
@@ -38,6 +42,21 @@ const MovieDetails = () => {
   const backPath = useRef(location.state?.from ?? '/');
 
   const { movieId } = useParams();
+  const dispatch = useDispatch();
+
+  const recentlyViewed = useSelector(selectRecentlyViewed)
+  const watchList = useSelector(selectWatchList)
+
+  const checkId = (movies, id) => {
+    if (movies.find(movie => movie.id === id
+    )) {
+      return false;
+    }
+    return true;
+  }
+
+
+
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -80,7 +99,23 @@ const MovieDetails = () => {
 
     fetchMovie();
     fetchSimilarMovies();
-  }, [movieId]);
+
+    if (checkId(recentlyViewed, movieId)) {
+      title && dispatch(addRecentlyViewed(title, movieId, poster))
+    }
+  }, [movieId, recentlyViewed, title, poster, dispatch]);
+
+  const onAddClick = () => {
+    if (checkId(watchList, movieId)) {
+      dispatch( addMovie(
+        title, movieId, poster
+      ))
+    }
+  }
+
+  const onRemoveClick = () => {
+    dispatch(deleteMovie(movieId))
+  }
 
   return isLoading ? (
     <Loader />
@@ -132,8 +167,10 @@ const MovieDetails = () => {
               {genres.map(({ id, name }) => {
                 return <li key={id}>{name}</li>;
               })}
-            </Genres>
-          </div>
+              </Genres>
+              <button type='button' onClick={onAddClick}>Add to watch-list</button>
+              <button type='button' onClick={onRemoveClick}>Remove from watch-list</button>
+            </div>
         </MovieContainer>
 
         <SimilarMoviesContainer>

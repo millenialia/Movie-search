@@ -10,6 +10,7 @@ const Movies = lazy(() => import('../../pages/Movies/Movies'));
 const MovieDetails = lazy(() =>
   import('../../pages/MovieDetails/MovieDetails')
 );
+const WatchList = lazy(() => import('../../pages/WatchList/WatchList'))
 const Reviews = lazy(() => import('../Reviews/Reviews'));
 const Cast = lazy(() => import('../Cast/Cast'));
 
@@ -22,6 +23,7 @@ export const App = () => {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/watch-list" element={<WatchList />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/movies/:movieId" element={<MovieDetails />}>
               <Route path="cast" element={<Cast />} />

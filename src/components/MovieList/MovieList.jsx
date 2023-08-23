@@ -9,6 +9,8 @@ const MovieList = ({
   totalPages,
   currentPage,
 }) => {
+
+
   return (
     <div>
       <Heading> {heading}</Heading>

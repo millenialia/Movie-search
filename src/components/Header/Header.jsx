@@ -24,7 +24,7 @@ export const Header = () => {
       <Container>
         <nav>
           <Link to="/">Home</Link>
-          {/* <Link to='/movies'>Movies</Link> */}
+          <Link to="/watch-list">Watch List</Link>
         </nav>
 
         <Form action="movie-search" onSubmit={onSubmit}>
