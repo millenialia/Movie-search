@@ -41,7 +41,6 @@ export const HeadingSecondary = styled.h2`
   font-weight: 300;
   font-size: 26px;
   width: 200px;
-  margin: 0;
   margin-bottom: 40px;
   text-transform: uppercase;
   box-shadow:

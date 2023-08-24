@@ -11,10 +11,10 @@ const recentlyViewedSlice = createSlice({
       reducer(state, action) {
         state.push(action.payload);
       },
-      prepare(title, id, poster_path,){
+      prepare(title, id, backdrop,){
         return{
           payload: {
-            title, id, poster_path,
+            title, id, backdrop,
           },
         }
       }

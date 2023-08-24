@@ -32,16 +32,29 @@ const TopRated = ({
         />
       </HeaderTopRated>
       <TopRatedList>
-        {topRated.map(({ title, id, backdrop_path, vote_average }) => {
+        {topRated.map(({ title, id, poster_path, vote_average, release_date, overview }) => {
           return (
-            <Item
-              key={id}
-              $backgroundUrl={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
-            >
+            <Item key={id}>
               <Link to={`/movies/${id}`}>
                 <div>
-                  <p>{title}</p>
-
+                  {poster_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                    alt="poster"
+                  />
+                ) : (
+                  <img
+                    src={
+                      'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
+                    }
+                    alt="profile"
+                  />
+                  )}
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{release_date.split('-')[0]}</p>
+                    <p>{overview}</p>
+                  </div>
                   <Likes>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

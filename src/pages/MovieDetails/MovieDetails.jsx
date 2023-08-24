@@ -104,9 +104,9 @@ const MovieDetails = () => {
     fetchSimilarMovies();
 
     if (checkId(recentlyViewed, movieId)) {
-      title && dispatch(addRecentlyViewed(title, movieId, poster))
+      title && dispatch(addRecentlyViewed(title, movieId, backdrop))
     }
-  }, [movieId, recentlyViewed, title, poster, dispatch, location, backPath]);
+  }, [movieId, recentlyViewed, title, backdrop, dispatch, location, backPath]);
 
   const onAddClick = () => {
     if (checkId(watchList, movieId)) {

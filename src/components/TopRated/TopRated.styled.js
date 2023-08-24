@@ -8,7 +8,7 @@ export const Heading = styled.h2`
 `;
 
 export const HeaderTopRated = styled.div`
-  width: 550px;
+  width: 750px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,21 +16,20 @@ export const HeaderTopRated = styled.div`
 
 export const TopRatedList = styled.ul`
 list-style: none;
-margin: 0;
-margin-bottom: 20px;
+margin: 20px 0;
 display: flex;
 flex-direction: column;
-gap: 10px;
-height: 435px;
+gap: 15px;
+height: 600px;
 overflow: auto;
-padding: 0;
+background-color: rgba(255, 255, 255, 0.05);
   &::-webkit-scrollbar {
         display: none; }
     }
 `;
 export const Item = styled.li`
-  width: 550px;
-  min-height: 150px;
+  width: 750px;
+  height: 185px;
   position: relative;
 
   > a {
@@ -39,28 +38,48 @@ export const Item = styled.li`
     > div {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 10px 10px;
-      background-color: rgba(0, 0, 0, 0.5);
+      border-bottom: .5px solid rgba(255, 255, 255, 0.6);
+
+      >img{
+          width: auto;
+          height: 180px;
+          transition: transform .3s ease-out;
+        }
+
+        >div{
+          width: 500px;
+          >h3{
+            margin-top: 10px;
+            text-transform: uppercase;
+            font-weight: normal;
+            overflow: auto;
+            white-space: nowrap;
+          }
+          >p{
+            margin-top: 10px;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.4);
+          }
+          >p:last-child{
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+          }
+        }
+
       &:hover {
         background-image: linear-gradient(
-          rgba(83, 127, 231, 0.5) 0%,
-          rgba(240, 46, 170, 0.5) 100%
+          rgba(83, 127, 231, 0.2) 0%,
+          rgba(240, 46, 170, 0.2) 100%
         );
+        &:hover img {
+          transform: scale(1.05)
+        }
       }
     }
   }
 
-  &:before {
-    z-index: -1;
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    overflow: hidden;
-    background: url(${props => props.$backgroundUrl}) no-repeat;
-    // filter: blur(2px) brightness(90%);
-    background-size: cover;
-  }
 `;
 export const Likes = styled.span`
   margin-left: 15px;

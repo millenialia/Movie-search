@@ -8,6 +8,7 @@ import Categories from 'components/Categories/Categories';
 import { Container, HomeBox } from './Home.styled';
 import HomeSlider from '../../components/HomeSlider/HomeSlider';
 import TopRated from 'components/TopRated/TopRated';
+import { RecentlyViewed } from 'components/RecentlyViewed/RecentlyViewed';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -15,6 +16,7 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [totalPageTopRated, setTotalPagesTopRated] = useState(1);
   const [currentPageTopRated, setCurrentPageTopRated] = useState(1);
+  console.log(topRated);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -72,6 +74,7 @@ const Home = () => {
             totalPageTopRated={totalPageTopRated}
             currentPageTopRated={currentPageTopRated}
           ></TopRated>
+          <RecentlyViewed></RecentlyViewed>
         </HomeBox>
       </Container>
     </div>
