@@ -37,9 +37,9 @@ const MovieDetails = () => {
   const [rating, setRating] = useState(0);
   const [similarMovies, setSimilarMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [backPath, setBackPath] = useState ('/')
 
   const location = useLocation();
-  const backPath = useRef(location.state?.from ?? '/');
 
   const { movieId } = useParams();
   const dispatch = useDispatch();
@@ -59,6 +59,9 @@ const MovieDetails = () => {
 
 
   useEffect(() => {
+    console.log(location);
+    console.log(backPath);
+    setBackPath(location.state?.from||"/")
     const fetchMovie = async () => {
       setIsLoading(true);
       try {
@@ -103,7 +106,7 @@ const MovieDetails = () => {
     if (checkId(recentlyViewed, movieId)) {
       title && dispatch(addRecentlyViewed(title, movieId, poster))
     }
-  }, [movieId, recentlyViewed, title, poster, dispatch]);
+  }, [movieId, recentlyViewed, title, poster, dispatch, location, backPath]);
 
   const onAddClick = () => {
     if (checkId(watchList, movieId)) {
@@ -122,7 +125,7 @@ const MovieDetails = () => {
   ) : (
     <div>
       <Container>
-        <Back to={backPath.current}>&larr;</Back>
+        <Back to={backPath}>&larr;</Back>
 
         <Hero $backgroundUrl={`https://image.tmdb.org/t/p/w500${backdrop}`}>
           <Details>

@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
-import Carousel from 'react-multi-carousel';
+
 import 'react-multi-carousel/lib/styles.css';
 
-import { Heading, Item } from './HomeSlider.styled';
+import { Heading, Item, CarouselStyled} from './HomeSlider.styled';
+
+import { Likes } from 'components/TopRated/TopRated.styled';
 
 const HomeSlider = ({ movies }) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 7,
+      items: 2,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 6,
+      items: 1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -27,7 +29,7 @@ const HomeSlider = ({ movies }) => {
   return (
     <div>
       <Heading>Trending today</Heading>
-      <Carousel
+      <CarouselStyled
         swipeable={true}
         draggable={true}
         responsive={responsive}
@@ -37,17 +39,19 @@ const HomeSlider = ({ movies }) => {
         keyBoardControl={true}
         customTransition="all 1s linear"
         transitionDuration={1000}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={['tablet', 'mobile']}
-        itemClass="carousel-item-padding-40-px"
+        removeArrowOnDeviceType={['tablet', 'mobile', 'desktop']}
+        centerMode
+        minimumTouchDrag={50}
+        pauseOnHover
       >
-        {movies.map(({ title, id, poster_path }) => {
+        {movies.map(({ title, id, backdrop_path, overview, vote_average }) => {
           return (
             <Item key={id}>
               <Link to={`/movies/${id}`} state={{ from: '/' }}>
-                {poster_path ? (
+                <div>
+                {backdrop_path ? (
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                    src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                     alt="poster"
                   />
                 ) : (
@@ -56,14 +60,28 @@ const HomeSlider = ({ movies }) => {
                       'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
                     }
                     alt="profile"
-                  />
-                )}
-                <p className="title">{title}</p>
+                      />
+                      )}
+                  <h2 className="title">{title}</h2>
+                  <div>
+                  <p>{overview}</p> <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"></path>
+              </svg>
+              {vote_average.toFixed(1)}
+                    </span>
+                    </div>
+                  </div>
               </Link>
             </Item>
           );
         })}
-      </Carousel>
+      </CarouselStyled>
     </div>
   );
 };

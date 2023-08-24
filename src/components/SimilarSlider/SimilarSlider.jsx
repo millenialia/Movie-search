@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { Item, HeadingSecondary } from './SimilarSlider.styled';
 
 const SimilarSlider = ({ movies, location }) => {
+  // console.log(location);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },

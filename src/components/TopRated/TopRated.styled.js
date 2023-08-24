@@ -39,9 +39,8 @@ export const Item = styled.li`
     > div {
       display: flex;
       justify-content: space-between;
-      padding: 0 10px;
+      padding: 10px 10px;
       background-color: rgba(0, 0, 0, 0.5);
-      // border-radius: 5px;
       &:hover {
         background-image: linear-gradient(
           rgba(83, 127, 231, 0.5) 0%,
