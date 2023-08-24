@@ -4,8 +4,6 @@ import 'react-multi-carousel/lib/styles.css';
 
 import { Heading, Item, CarouselStyled} from './HomeSlider.styled';
 
-import { Likes } from 'components/TopRated/TopRated.styled';
-
 const HomeSlider = ({ movies }) => {
   const responsive = {
     superLargeDesktop: {

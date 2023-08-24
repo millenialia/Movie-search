@@ -1,5 +1,5 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState} from 'react';
 import {
   fetchMovieDetailsById,
   fetchSimilarMoviesById,
