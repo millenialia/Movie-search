@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMovie, deleteMovie } from 'redux/watchListSlice';
 import { addRecentlyViewed } from 'redux/recentlyViewedSlice';
 import { selectRecentlyViewed, selectWatchList } from 'redux/selectors';
+import { WatchListAddSvg } from '../../components/Svg/WatchListAdd/WatchListAddSvg'
+import { WatchListRemoveSvg } from '../../components/Svg/WatchListRemove/WatchListRemoveSvg'
 
 import {
   Heading,
@@ -25,6 +27,8 @@ import {
   Likes,
   SimilarMoviesContainer,
   Link,
+  AddRemoveWatchList,
+  MovieInfo,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -55,12 +59,12 @@ const MovieDetails = () => {
     return true;
   }
 
+  const isOnWatchlist = !checkId(watchList, movieId)
+
 
 
 
   useEffect(() => {
-    console.log(location);
-    console.log(backPath);
     setBackPath(location.state?.from||"/")
     const fetchMovie = async () => {
       setIsLoading(true);
@@ -146,22 +150,25 @@ const MovieDetails = () => {
           </Details>
         </Hero>
 
-        <MovieContainer>
+          <MovieContainer>
+            <div>
           {poster ? (
             <img
-              src={`https://image.tmdb.org/t/p/w500${poster}`}
-              alt="poster"
+            src={`https://image.tmdb.org/t/p/w500${poster}`}
+            alt="poster"
             />
-          ) : (
-            <img
+            ) : (
+              <img
               src={
                 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
               }
               alt="poster"
-            />
-          )}
+              />
+              )}
+              <AddRemoveWatchList type='button' onClick={isOnWatchlist ? onRemoveClick : onAddClick}>{isOnWatchlist ? <WatchListRemoveSvg /> : <WatchListAddSvg />}</AddRemoveWatchList>
+              </div>
 
-          <div>
+          <MovieInfo>
             <HeadingSecondary>Overview</HeadingSecondary>
             <p>{overview}</p>
 
@@ -171,9 +178,7 @@ const MovieDetails = () => {
                 return <li key={id}>{name}</li>;
               })}
               </Genres>
-              <button type='button' onClick={onAddClick}>Add to watch-list</button>
-              <button type='button' onClick={onRemoveClick}>Remove from watch-list</button>
-            </div>
+            </MovieInfo>
         </MovieContainer>
 
         <SimilarMoviesContainer>

@@ -10,33 +10,43 @@ export const Container = styled.div`
 export const Heading = styled.h1`
   font-weight: 300;
   text-transform: uppercase;
-  color: white;
+  // color: white;
   font-size: 44px;
   margin-bottom: 13px;
   position: relative;
 `;
 export const MovieContainer = styled.div`
-  margin-top: 20px;
   display: flex;
   gap: 30px;
 
-  > img {
+  > div:first-child {
+    z-index: 10000000;
     width: 300px;
     height: 450px;
     margin-top: -150px;
     margin-left: 20px;
-    z-index: 1000000000;
-  }
+    position: relative;
+    > img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    >button{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
 
-  > div {
-    > p {
-      font-size: 14px;
+  }
+`;
+
+export const MovieInfo = styled.div`
+> p {
       width: 600px;
       margin-bottom: 40px;
       min-height: 80px;
     }
-  }
-`;
+`
 export const HeadingSecondary = styled.h2`
   font-weight: 300;
   font-size: 26px;
@@ -44,8 +54,8 @@ export const HeadingSecondary = styled.h2`
   margin-bottom: 40px;
   text-transform: uppercase;
   box-shadow:
-    rgba(240, 46, 170, 0.3) 0px 5px,
-    rgba(240, 46, 170, 0.2) 0px 10px;
+    var(--color-pink3) 0px 5px,
+    var(--color-pink2) 0px 10px;
 `;
 export const Genres = styled.ul`
   list-style: none;
@@ -53,9 +63,6 @@ export const Genres = styled.ul`
   gap: 10px;
   padding: 0;
   align-items: flex-start;
-  > li {
-    font-size: 14px;
-  }
 `;
 export const List = styled.ul`
   list-style: none;
@@ -66,12 +73,12 @@ export const List = styled.ul`
 `;
 
 export const Back = styled(NavLink)`
-  color: white;
+  // color: white;
   font-size: 35px;
-  text-decoration: none;
+
   transition: all 0.3s linear;
   &:hover {
-    color: rgba(83, 127, 231);
+    color: var(--color-blue);
   }
 `;
 
@@ -129,10 +136,17 @@ export const SimilarMoviesContainer = styled.div`
 `;
 export const Link = styled(NavLink)`
   cursor: pointer;
-  text-decoration: none;
-  color: white;
+
+  // color: white;
   text-transform: uppercase;
   &.active {
-    box-shadow: rgba(240, 46, 170, 0.5) 0px 5px;
+    box-shadow: var(--color-pink5) 0px 5px;
   }
 `;
+
+export const AddRemoveWatchList = styled.button`
+background: rgba(0,0,0,0.8);
+border: none;
+cursor: pointer;
+z-index: 10000000000000000000000000;
+`

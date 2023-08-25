@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Header } from '../Header/Header';
 import { Loader } from 'components/Loader/Loader';
 
-import { Main } from './App.styled';
+import { Global } from '../../Styles/GlobalStyles.styled'
 
 const Home = lazy(() => import('../../pages/Home/Home'));
 const Movies = lazy(() => import('../../pages/Movies/Movies'));
@@ -17,9 +17,10 @@ const Cast = lazy(() => import('../Cast/Cast'));
 export const App = () => {
   return (
     <div>
+      <Global/>
       <Header />
 
-      <Main>
+      <main>
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -32,7 +33,7 @@ export const App = () => {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
-      </Main>
+      </main>
     </div>
   );
 };

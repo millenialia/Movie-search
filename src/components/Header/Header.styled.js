@@ -11,74 +11,81 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+export const Navigation = styled.nav`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+`
+
 export const HeaderBox = styled.header`
-  padding: 10px 0;
-
   box-shadow:
-    rgba(240, 46, 170, 0.4) 0px 5px,
-    rgba(240, 46, 170, 0.3) 0px 10px,
-    rgba(240, 46, 170, 0.2) 0px 15px,
-    rgba(240, 46, 170, 0.1) 0px 20px,
-    rgba(240, 46, 170, 0.05) 0px 25px;
+    var(--color-pink4) 0px 5px,
+    var(--color-pink3) 0px 10px,
+    var(--color-pink2) 0px 15px,
+    var(--color-pink1) 0px 20px,
+    var(--color-pink05) 0px 25px;
 
-  background-color: transperent;
+  background-color: transparent;
   margin: 10px auto;
   margin-bottom: 50px;
-
   max-width: 1400px;
 
-  > nav {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 12px;
-  }
 `;
 
 export const Link = styled(NavLink)`
   padding: 8px 16px;
 
-  text-decoration: none;
   color: black;
   text-transform: uppercase;
   font-weight: 400;
   font-size: 20px;
-  color: white;
+  // color: white;
 
   &.active {
-    color: rgba(83, 127, 231);
+    >span{
+      >svg{
+         stroke: var(--color-pink);
+          fill: var(--color-pink);
+      }
+    }
+
   }
 `;
 
 export const Form = styled.form`
+display: flex;
+align-items: flex-end;
   > input {
-    width: 200px;
-    height: 40px;
-    padding-left: 40px;
+    width: 150px;
+    padding: 0 0 5px 20px;
     border: none;
-    border-bottom: 2px solid white;
-    font-size: 20px;
-    color: white;
+    border-bottom: 1px solid white;
+    font-size: 18px;
+    // color: white;
     background-color: transparent;
     outline: none;
   }
 
   > input:focus {
-    border-bottom: 1px solid white;
+    border-bottom: .8px solid var(--color-pink);
   }
 
   button {
-    width: 150px;
-    height: 40px;
-    font-size: 20px;
-    color: white;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    transition: all 0.3s linear;
-
-    &:hover {
-      color: rgba(83, 127, 231);
-    }
   }
 `;
+
+export const OpenCategories = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+
+  @media (min-width: 1200px) {
+    display:none;
+  }
+`

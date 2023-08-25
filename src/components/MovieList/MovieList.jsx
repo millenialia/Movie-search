@@ -39,6 +39,7 @@ const MovieList = ({
           );
         })}
       </List>
+      { totalPages>1&&
       <StyledReactPaginate
         activeClassName="active"
         marginPagesDisplayed={1}
@@ -46,7 +47,7 @@ const MovieList = ({
         pageCount={totalPages}
         onPageChange={handlePageChange}
         forcePage={currentPage - 1}
-      />
+      />}
     </div>
   );
 };

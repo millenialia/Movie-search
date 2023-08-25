@@ -2,30 +2,26 @@ import { Link } from 'react-router-dom';
 
 import 'react-multi-carousel/lib/styles.css';
 
-import { Heading, Item, CarouselStyled} from './HomeSlider.styled';
+import { HomeSliderBox, Heading, Item, CarouselStyled} from './HomeSlider.styled';
 
 const HomeSlider = ({ movies }) => {
   const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 2,
-    },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 5000, min: 1200 },
       items: 1,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      breakpoint: { max: 1200, min: 768 },
+      items: 1,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 768, min: 0 },
       items: 1,
     },
   };
 
   return (
-    <div>
+    <HomeSliderBox>
       <Heading>Trending today</Heading>
       <CarouselStyled
         swipeable={true}
@@ -39,7 +35,7 @@ const HomeSlider = ({ movies }) => {
         transitionDuration={1000}
         removeArrowOnDeviceType={['tablet', 'mobile', 'desktop']}
         centerMode
-        minimumTouchDrag={50}
+        minimumTouchDrag={80}
         pauseOnHover
       >
         {movies.map(({ title, id, backdrop_path, overview, vote_average }) => {
@@ -80,7 +76,7 @@ const HomeSlider = ({ movies }) => {
           );
         })}
       </CarouselStyled>
-    </div>
+    </HomeSliderBox>
   );
 };
 

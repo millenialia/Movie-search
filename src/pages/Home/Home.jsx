@@ -1,32 +1,22 @@
 import {
   fetchTrendingMovies,
-  fetchCategories,
+  // fetchCategories,
   fetchTopRated,
 } from '../../services/api';
 import { useEffect, useState } from 'react';
 import Categories from 'components/Categories/Categories';
-import { Container, HomeBox } from './Home.styled';
+import { Container, HomeBox, CategoriesBox } from './Home.styled';
 import HomeSlider from '../../components/HomeSlider/HomeSlider';
 import TopRated from 'components/TopRated/TopRated';
 import { RecentlyViewed } from 'components/RecentlyViewed/RecentlyViewed';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [totalPageTopRated, setTotalPagesTopRated] = useState(1);
   const [currentPageTopRated, setCurrentPageTopRated] = useState(1);
-  console.log(topRated);
 
   useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const { genres } = await fetchCategories();
-        setGenres(genres);
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
     const fetchMovies = async () => {
       try {
@@ -51,7 +41,7 @@ const Home = () => {
       }
     };
 
-    fetchGenres();
+    // fetchGenres();
     fetchMovies();
     fetchTopRatedMovies();
   }, [currentPageTopRated]);
@@ -65,7 +55,9 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <Categories genres={genres} />
+        <CategoriesBox>
+          <Categories />
+        </CategoriesBox>
         <HomeSlider movies={movies} />
         <HomeBox>
           <TopRated

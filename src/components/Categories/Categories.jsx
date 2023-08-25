@@ -1,7 +1,30 @@
 import { useNavigate, createSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  fetchCategories,
+} from '../../services/api';
 import { List, Button } from './Categories.styled';
 
-const Categories = ({ genres }) => {
+const Categories = () => {
+
+  const [genres, setGenres] = useState([]);
+
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const { genres } = await fetchCategories();
+        setGenres(genres);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchGenres();
+  }, []);
+
+
+
   const navigate = useNavigate();
 
   const onClick = e => {

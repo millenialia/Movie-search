@@ -24,7 +24,6 @@ export const List = styled.ul`
 `;
 export const Profile = styled.div`
   > :last-child {
-    font-size: 12px;
     color: #808080;
   }
 `;

@@ -12,8 +12,8 @@ export const Item = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  text-decoration: none;
-  color: white;
+
+  // color: white;
   font-size: 8px;
   text-transform: uppercase;
   >img{
@@ -30,6 +30,6 @@ export const HeadingSecondary = styled.h2`
   margin-bottom: 40px;
   text-transform: uppercase;
   box-shadow:
-    rgba(240, 46, 170, 0.3) 0px 5px,
-    rgba(240, 46, 170, 0.2) 0px 10px;
+    var(--color-pink3) 0px 5px,
+    var(--color-pink2) 0px 10px;
 `;

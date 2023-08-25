@@ -12,28 +12,21 @@ const WatchList = () => {
 
   const location = useLocation();
 
-
-
-  const handlePageChange = selectedPage => {
-
-    };
-
+  const heading = movies.length ? `You have ${movies.length} movies in watch list`: `No movies in watch list`
   return (
     <Container>
-      <div>
           <MovieList
-            heading="Watch List"
+            heading = {heading}
             movies={movies}
             location={location}
-            handlePageChange={handlePageChange}
-            totalPages= "500"
+            handlePageChange=""
+            totalPages= "1"
             currentPage="1"
           />
 
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-      </div>
     </Container>
   );
 };

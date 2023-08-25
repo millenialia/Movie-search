@@ -8,28 +8,33 @@ export const Heading = styled.h1`
 
 export const List = styled.ul`
   list-style: none;
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
-  column-gap: 5px;
-  row-gap: 15px;
+  row-gap: 25px;
   justify-content: center;
 
   > li {
     width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
 
     > a {
       width: 250px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      text-decoration: none;
-      color: white;
+
+
+      // color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       > img {
         width: 250px;
         height: 372px;
+      }
+      >p{
+        padding: 2px;
+        overflow: auto;
+        white-space: nowrap;
+        &::-webkit-scrollbar {
+        display: none; }
       }
     }
   }
@@ -43,13 +48,13 @@ export const StyledReactPaginate = styled(ReactPaginate)`
   align-items: center;
   justify-content: center;
   font-size: 26px;
-  color: white;
+  // color: white;
   margin: 50px auto;
   cursor: pointer;
   > .active {
     box-shadow:
-      rgba(240, 46, 170, 0.5) 0px 5px,
-      rgba(240, 46, 170, 0.3) 0px 10px;
+      var(--color-pink5) 0px 5px,
+      var(--color-pink3) 0px 10px;
     padding: 5px;
   }
 `;
