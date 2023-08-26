@@ -24,7 +24,7 @@ export const Item = styled.div`
 
 `;
 export const HeadingSecondary = styled.h2`
-  font-weight: 300;
+font-weight: 300;
   font-size: 26px;
   width: 200px;
   margin-bottom: 40px;

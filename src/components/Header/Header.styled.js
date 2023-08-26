@@ -63,7 +63,6 @@ align-items: flex-end;
     border: none;
     border-bottom: 1px solid white;
     font-size: 18px;
-    // color: white;
     background-color: transparent;
     outline: none;
   }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { AddRemoveWatchListBtn } from '..//AddRemoveWatchList/AddRemoveWatchList'
 
 import 'react-multi-carousel/lib/styles.css';
 
@@ -38,7 +39,7 @@ const HomeSlider = ({ movies }) => {
         minimumTouchDrag={80}
         pauseOnHover
       >
-        {movies.map(({ title, id, backdrop_path, overview, vote_average }) => {
+        {movies.map(({ title, id, backdrop_path, overview, vote_average, poster_path }) => {
           return (
             <Item key={id}>
               <Link to={`/movies/${id}`} state={{ from: '/' }}>
@@ -72,6 +73,7 @@ const HomeSlider = ({ movies }) => {
                     </div>
                   </div>
               </Link>
+              <AddRemoveWatchListBtn title={title} movieId={id} poster={ poster_path } />
             </Item>
           );
         })}

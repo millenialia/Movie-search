@@ -11,10 +11,17 @@ export const RecentlyViewedContainer = styled.div`
 `;
 
 export const Heading = styled.h2`
-   font-weight: 300;
+font-weight: 300;
   text-transform: uppercase;
-  font-size: 18px;
   padding: 10px 0;
+  font-size: 18px;
+  @media (min-width: 768px) {
+     font-size: 20px;
+  }
+
+@media (min-width: 1200px) {
+     font-size: 26px;
+  }
 `;
 
 export const RecenltyList = styled.ul`
@@ -33,6 +40,7 @@ export const RecenltyList = styled.ul`
 export const Item = styled.li`
   min-height: 150px;
   position: relative;
+  text-transform: uppercase;
 
   > a > div {
     display: flex;
@@ -58,6 +66,6 @@ export const Item = styled.li`
     background: url(${props => props.$backgroundUrl}) no-repeat;
     filter: blur(1px) brightness(0.7);
     background-size: cover;
-    background-position: center center
+    background-position: center center;
   }
 `;

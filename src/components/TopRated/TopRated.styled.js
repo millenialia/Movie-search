@@ -2,9 +2,16 @@ import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
 
 export const Heading = styled.h2`
-  font-weight: 300;
+font-weight: 300;
   text-transform: uppercase;
   font-size: 18px;
+  @media (min-width: 768px) {
+     font-size: 20px;
+  }
+
+@media (min-width: 1200px) {
+     font-size: 26px;
+  }
 `;
 
 export const HeaderTopRated = styled.div`
@@ -75,6 +82,14 @@ export const Item = styled.li`
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-size: 14px;
+        @media (min-width: 768px) {
+          font-size: 18px;
+        }
+
+        @media (min-width: 1200px) {
+          font-size: 20px;
+        }
       }
 
       > p {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
 
 export const Heading = styled.h1`
-  font-weight: 300;
+font-weight: 300;
   text-transform: uppercase;
 `;
 
@@ -12,10 +12,12 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   row-gap: 25px;
+  column-gap: 15px;
   justify-content: center;
 
   > li {
-    width: 280px;
+    width: 250px;
+    position: relative;
 
     > a {
       width: 250px;

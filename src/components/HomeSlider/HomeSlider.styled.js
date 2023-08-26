@@ -10,9 +10,9 @@ export const HomeSliderBox = styled.div`
 
 
 export const Heading = styled.h1`
-  font-weight: 300;
-  font-size: 18px;
-  text-transform: uppercase;
+font-weight: 300;
+text-transform: uppercase;
+font-size: 18px;
   @media (min-width: 768px) {
      font-size: 20px;
   }
@@ -62,7 +62,6 @@ height: 197px;
       >h2{
       width: 90%;
       text-transform: uppercase;
-      font-size: 14px;
       position: absolute;
       inset: auto auto 15px 15px;
       transition: inset .3s .3s ease-out;
@@ -72,6 +71,7 @@ height: 197px;
       &::-webkit-scrollbar {
         display: none; }
 
+        font-size: 14px;
         @media (min-width: 768px) {
           font-size: 18px;
         }

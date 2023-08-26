@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
+margin-top: 40px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   column-gap: 60px;
   row-gap: 15px;
+  justify-content: center;
 
   > li {
     background-color: rgba(255, 255, 255, 0.17);
-    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 700px;
     margin: 20px;

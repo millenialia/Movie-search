@@ -7,6 +7,6 @@ export const Container = styled.div`
 `;
 
 export const Heading = styled.h1`
-  font-weight: 300;
+font-weight: 300;
   text-transform: uppercase;
 `;

@@ -7,11 +7,10 @@ import {
 import SimilarSlider from '../../components/SimilarSlider/SimilarSlider';
 import { Loader } from 'components/Loader/Loader';
 import { useDispatch, useSelector } from "react-redux";
-import { addMovie, deleteMovie } from 'redux/watchListSlice';
 import { addRecentlyViewed } from 'redux/recentlyViewedSlice';
-import { selectRecentlyViewed, selectWatchList } from 'redux/selectors';
-import { WatchListAddSvg } from '../../components/Svg/WatchListAdd/WatchListAddSvg'
-import { WatchListRemoveSvg } from '../../components/Svg/WatchListRemove/WatchListRemoveSvg'
+import { selectRecentlyViewed } from 'redux/selectors';
+import { AddRemoveWatchListBtn } from '../../components/AddRemoveWatchList/AddRemoveWatchList'
+
 
 import {
   Heading,
@@ -27,7 +26,6 @@ import {
   Likes,
   SimilarMoviesContainer,
   Link,
-  AddRemoveWatchList,
   MovieInfo,
 } from './MovieDetails.styled';
 
@@ -49,7 +47,6 @@ const MovieDetails = () => {
   const dispatch = useDispatch();
 
   const recentlyViewed = useSelector(selectRecentlyViewed)
-  const watchList = useSelector(selectWatchList)
 
   const checkId = (movies, id) => {
     if (movies.find(movie => movie.id === id
@@ -58,10 +55,6 @@ const MovieDetails = () => {
     }
     return true;
   }
-
-  const isOnWatchlist = !checkId(watchList, movieId)
-
-
 
 
   useEffect(() => {
@@ -112,17 +105,6 @@ const MovieDetails = () => {
     }
   }, [movieId, recentlyViewed, title, backdrop, dispatch, location, backPath]);
 
-  const onAddClick = () => {
-    if (checkId(watchList, movieId)) {
-      dispatch( addMovie(
-        title, movieId, poster
-      ))
-    }
-  }
-
-  const onRemoveClick = () => {
-    dispatch(deleteMovie(movieId))
-  }
 
   return isLoading ? (
     <Loader />
@@ -165,7 +147,8 @@ const MovieDetails = () => {
               alt="poster"
               />
               )}
-              <AddRemoveWatchList type='button' onClick={isOnWatchlist ? onRemoveClick : onAddClick}>{isOnWatchlist ? <WatchListRemoveSvg /> : <WatchListAddSvg />}</AddRemoveWatchList>
+
+              <AddRemoveWatchListBtn title={title} movieId={parseInt(movieId)} poster={ poster } />
               </div>
 
           <MovieInfo>
@@ -187,7 +170,7 @@ const MovieDetails = () => {
 
         <List>
           <li>
-            <Link to={'cast'}>Cast</Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
             <Link to="reviews">Reviews</Link>

@@ -5,23 +5,26 @@ import 'react-multi-carousel/lib/styles.css';
 import { Item, HeadingSecondary } from './SimilarSlider.styled';
 
 const SimilarSlider = ({ movies, location }) => {
-  // console.log(location);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 14,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1200 },
       items: 10,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1200, min: 768 },
+      items: 7,
+    },
+    wideMobile: {
+      breakpoint: { max: 768, min: 450 },
       items: 4,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
+      breakpoint: { max: 450, min: 0 },
+      items: 3,
     },
   };
 

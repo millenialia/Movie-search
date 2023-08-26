@@ -160,7 +160,8 @@ table {
 }
 
   :root {
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: 300;
 
       @media (min-width: 768px) {
         font-size: 14px;

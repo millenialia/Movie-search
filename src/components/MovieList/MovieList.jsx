@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Heading, List, StyledReactPaginate } from './MovileList.styled';
+import { AddRemoveWatchListBtn } from '../AddRemoveWatchList/AddRemoveWatchList'
 
 const MovieList = ({
   movies,
@@ -35,6 +36,7 @@ const MovieList = ({
 
                 <p>{title}</p>
               </Link>
+              <AddRemoveWatchListBtn title={title} movieId={id} poster={ poster_path } />
             </li>
           );
         })}
