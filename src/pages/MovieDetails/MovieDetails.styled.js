@@ -22,7 +22,7 @@ export const MovieContainer = styled.div`
     flex-direction: row;
   }
   > div:first-child {
-    z-index: 10000000;
+    z-index: 100;
     width: 300px;
     height: 450px;
     margin-top: -180px;

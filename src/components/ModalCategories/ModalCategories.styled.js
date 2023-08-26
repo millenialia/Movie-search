@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
-    z-index: 1200;
+
     position: fixed;
     top: 70px;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 999999999999999999999999999;
+    z-index: 100000000000000000000000000000000;
 
 `;
 
