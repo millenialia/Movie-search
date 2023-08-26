@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/Movie-search/static/css/main.02492be7.css",
-    "main.js": "/Movie-search/static/js/main.5fa1aef5.js",
+    "main.js": "/Movie-search/static/js/main.554e60ce.js",
     "static/css/380.3514d6a0.chunk.css": "/Movie-search/static/css/380.3514d6a0.chunk.css",
     "static/js/380.ad68c7af.chunk.js": "/Movie-search/static/js/380.ad68c7af.chunk.js",
     "static/js/278.d58358b0.chunk.js": "/Movie-search/static/js/278.d58358b0.chunk.js",
     "static/css/864.3514d6a0.chunk.css": "/Movie-search/static/css/864.3514d6a0.chunk.css",
-    "static/js/864.f1def19b.chunk.js": "/Movie-search/static/js/864.f1def19b.chunk.js",
+    "static/js/864.a070599d.chunk.js": "/Movie-search/static/js/864.a070599d.chunk.js",
     "static/js/177.867f20d3.chunk.js": "/Movie-search/static/js/177.867f20d3.chunk.js",
     "static/js/779.b07ddcda.chunk.js": "/Movie-search/static/js/779.b07ddcda.chunk.js",
     "static/js/387.ba883011.chunk.js": "/Movie-search/static/js/387.ba883011.chunk.js",
@@ -17,12 +17,12 @@
     "static/media/revicons.woff": "/Movie-search/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/Movie-search/index.html",
     "main.02492be7.css.map": "/Movie-search/static/css/main.02492be7.css.map",
-    "main.5fa1aef5.js.map": "/Movie-search/static/js/main.5fa1aef5.js.map",
+    "main.554e60ce.js.map": "/Movie-search/static/js/main.554e60ce.js.map",
     "380.3514d6a0.chunk.css.map": "/Movie-search/static/css/380.3514d6a0.chunk.css.map",
     "380.ad68c7af.chunk.js.map": "/Movie-search/static/js/380.ad68c7af.chunk.js.map",
     "278.d58358b0.chunk.js.map": "/Movie-search/static/js/278.d58358b0.chunk.js.map",
     "864.3514d6a0.chunk.css.map": "/Movie-search/static/css/864.3514d6a0.chunk.css.map",
-    "864.f1def19b.chunk.js.map": "/Movie-search/static/js/864.f1def19b.chunk.js.map",
+    "864.a070599d.chunk.js.map": "/Movie-search/static/js/864.a070599d.chunk.js.map",
     "177.867f20d3.chunk.js.map": "/Movie-search/static/js/177.867f20d3.chunk.js.map",
     "779.b07ddcda.chunk.js.map": "/Movie-search/static/js/779.b07ddcda.chunk.js.map",
     "387.ba883011.chunk.js.map": "/Movie-search/static/js/387.ba883011.chunk.js.map",
@@ -31,6 +31,6 @@
   },
   "entrypoints": [
     "static/css/main.02492be7.css",
-    "static/js/main.5fa1aef5.js"
+    "static/js/main.554e60ce.js"
   ]
 }
